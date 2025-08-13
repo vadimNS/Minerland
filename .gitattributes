@@ -1,0 +1,13 @@
+# Автоматично керувати кінцями рядків для всіх текстових файлів
+* text=auto
+
+# Визначити специфічні для Unity типи файлів як текстові
+*.cs text
+*.shader text
+*.txt text
+*.json text
+*.asmdef text
+*.prefab text
+*.unity text
+*.mat text
+*.meta text
