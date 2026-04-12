@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a1cb8a5f648a4a5429761c68f5e2c9fd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - coalSprite: {fileID: 555232471, guid: 6b5e8466a5e441744849916e35fd0ea0, type: 3}
+  - stoneSprite: {fileID: 1546190195, guid: 076a014f52857db40aed9eb342172ef3, type: 3}
+  - dirtSprite: {fileID: 925310841, guid: 112791e2b73d2be409845141f0dc0f36, type: 3}
+  - ironSprite: {fileID: 376140721, guid: 6b5e8466a5e441744849916e35fd0ea0, type: 3}
+  - diamondSprite: {fileID: 1136970227, guid: 6b5e8466a5e441744849916e35fd0ea0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

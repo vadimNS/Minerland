@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a527e97d49ed5f4bbfa91aba545f9c0, type: 3}
+  m_Name: PickaxeDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::PickaxeDatabase
+  pickaxes:
+  - {fileID: 11400000, guid: f959543a4eeae4545a17b2778164150c, type: 2}
+  - {fileID: 11400000, guid: 891acfc6887086c4081e94ac43f26929, type: 2}
+  - {fileID: 11400000, guid: 58a9fc59cbb25bd4cae19a4f17ec59e2, type: 2}
+  - {fileID: 11400000, guid: 2e16f8a50c53e844b9465224ecd27c90, type: 2}
+  - {fileID: 11400000, guid: 81b555331f5f6e2499434618060889e6, type: 2}

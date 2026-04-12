@@ -1,7 +1,7 @@
 # Автоматично керувати кінцями рядків для всіх текстових файлів
 * text=auto
 
-# Визначити специфічні для Unity типи файлів як текстові
+# Текстові файли Unity
 *.cs text
 *.shader text
 *.txt text
@@ -11,3 +11,24 @@
 *.unity text
 *.mat text
 *.meta text
+*.anim text
+*.asset text
+
+# Бінарні файли
+*.unitypackage binary
+*.fbx binary
+*.fbx binary
+*.blend binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.psd binary
+*.tga binary
+*.tiff binary
+*.mp3 binary
+*.wav binary
+*.mp4 binary
+*.mov binary
+*.ttf binary
+*.otf binary
