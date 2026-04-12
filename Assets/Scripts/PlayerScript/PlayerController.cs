@@ -53,12 +53,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Горизонтальний рух
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
 
         // Стрибок
         if (jumpRequested)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             jumpRequested = false;
         }
 

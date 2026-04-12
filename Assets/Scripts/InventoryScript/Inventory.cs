@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Inventory
 {
+    public System.Action OnInventoryChanged;
     private List<InventorySlot> slots;
-    private int coins = 0;
-    public int Coins => coins;
-
+    public int SlotCount => slots.Count;
+    public InventorySlot GetSlot(int index) => slots[index];
     public Inventory(int initialSlotCount = 5)
     {
         slots = new List<InventorySlot>();
@@ -24,6 +24,7 @@ public class Inventory
             {
                 slot.Add(type, 1);
                 Debug.Log($"Block {type} added to existing slot. Total: {slot.Count}");
+                OnInventoryChanged?.Invoke();
                 return;
             }
         }
@@ -34,38 +35,20 @@ public class Inventory
             {
                 slot.Add(type, 1);
                 Debug.Log($"Block {type} added to NEW slot. Total: {slot.Count}");
+                OnInventoryChanged?.Invoke();
                 return;
             }
         }
 
         Debug.Log($"Inventory FULL! Could not add block of type {type}.");
-    }
-    public bool SpendCoins(int amount)
-    {
-        if (coins >= amount)
-        {
-            coins -= amount;
-            return true;
-        }
-        return false;
+
     }
 
-    public void AddCoins(int amount)
-    {
-        coins += amount;
-    }
-    public void PrintInventory()
-    {
-        Debug.Log("Inventory Contents:");
-        for (int i = 0; i < slots.Count; i++)
-        {
-            var slot = slots[i];
-            string content = slot.IsEmpty ? "Empty" : $"{slot.Type} x{slot.Count}";
-            Debug.Log($"Slot {i + 1}: {content}");
-        }
-    }
 
-    public void SellAll()
+
+
+
+    public int SellAll()
     {
         int total = 0;
         foreach (var slot in slots)
@@ -73,7 +56,8 @@ public class Inventory
             total += slot.SellAll();
         }
 
-        coins += total;
-        Debug.Log($"Total earned: {total}. Current balance: {coins} coins.");
+        Debug.Log($"Total value of sold items: {total} coins.");
+        OnInventoryChanged?.Invoke();
+        return total;
     }
 }

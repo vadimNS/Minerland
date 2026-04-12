@@ -4,15 +4,20 @@ using UnityEngine.Tilemaps;
 
 public class BlockDiggingController : MonoBehaviour
 {
+    private PlayerEconomy playerEconomy;
     [SerializeField] private Tilemap tilemap;
-    [SerializeField] private MineRenderer mineRenderer;
+
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform digPoint; // Точка взаємодії (наприклад, руки)
-    [SerializeField] private float damageInterval = 1f;
+
     [SerializeField] private float breakDistance = 1.5f; // Максимальна дистанція для руйнування
 
     [SerializeField] private BreakingEffectController breakingEffect;
 
+    [SerializeField] private int slotCount = 5; // Змінюйте кількість слотів тут
+    [SerializeField] private GameObject inventoryPanel; // Об'єкт інвентаря
+    [SerializeField] private PickaxeDatabase pickaxeDatabase; // Database кирок
+    [SerializeField] private SelectedPickaxeSlotUI selectedPickaxeSlotUI; // Відображення поточної кирки
 
     private Inventory playerInventory;
     private Pickaxe currentPickaxe;
@@ -28,8 +33,17 @@ public class BlockDiggingController : MonoBehaviour
 
     private void Start()
     {
+        playerInventory = new Inventory(slotCount); // Передаємо slotCount
+        Wallet wallet = new Wallet();
+        var coinsUI = FindAnyObjectByType<CoinsUI>();
+        if (coinsUI != null)
+            coinsUI.Initialize(wallet);
+        playerEconomy = new PlayerEconomy(playerInventory, wallet);
 
-        playerInventory = new Inventory(5);
+        var inventoryUI = FindAnyObjectByType<InventoryUI>();
+        if (inventoryUI != null)
+            inventoryUI.Initialize(playerInventory, wallet);
+
         InitializePickaxes();
         SetPickaxe(PickaxeType.Diamond); // Стартова
     }
@@ -37,7 +51,9 @@ public class BlockDiggingController : MonoBehaviour
     {
         foreach (PickaxeType type in System.Enum.GetValues(typeof(PickaxeType)))
         {
-            pickaxes[type] = new Pickaxe(type);
+            PickaxeData data = pickaxeDatabase.GetPickaxeData(type);
+            if (data != null)
+                pickaxes[type] = new Pickaxe(data);
         }
     }
     private void Update()
@@ -59,8 +75,15 @@ public class BlockDiggingController : MonoBehaviour
         // Продаж на P
         if (Input.GetKeyDown(KeyCode.P))
         {
-            playerInventory.SellAll();
-            playerInventory.PrintInventory();
+            playerEconomy.SellAllInventory();
+
+        }
+
+        // Відкривання/закривання інвентаря на I
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventoryPanel != null)
+                inventoryPanel.SetActive(!inventoryPanel.activeSelf);
         }
 
         // Покупка кирок
@@ -115,7 +138,7 @@ public class BlockDiggingController : MonoBehaviour
             mineData[x, y] = null;
 
             playerInventory.AddBlock(block.Type);
-            playerInventory.PrintInventory();
+
 
             breakingEffect.Hide();
         }
@@ -129,19 +152,25 @@ public class BlockDiggingController : MonoBehaviour
             return;
         }
 
-        if (newPick.Price == 0 || playerInventory.SpendCoins(newPick.Price))
+        if (playerEconomy.TryBuyPickaxe(newPick))  // новий метод в PlayerEconomy
         {
             SetPickaxe(type);
             Debug.Log($"Bought and equipped {type} pickaxe.");
         }
         else
         {
-            Debug.Log($"Not enough coins to buy {type} pickaxe. Need: {newPick.Price}, Have: {playerInventory.Coins}");
+            Debug.Log($"Not enough coins to buy {type} pickaxe. Need: {newPick.Price}, Have: {playerEconomy.Coins}");
         }
     }
 
     private void SetPickaxe(PickaxeType type)
     {
         currentPickaxe = pickaxes[type];
+
+        if (selectedPickaxeSlotUI != null)
+        {
+            PickaxeData data = pickaxeDatabase.GetPickaxeData(type);
+            selectedPickaxeSlotUI.SetPickaxe(data);
+        }
     }
 }
