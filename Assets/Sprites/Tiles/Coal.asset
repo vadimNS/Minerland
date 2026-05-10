@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Coal
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 555232471, guid: 6b5e8466a5e441744849916e35fd0ea0, type: 3}
+  m_Sprite: {fileID: -228819513787663229, guid: e924dc7106612274a8334051b5893e16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

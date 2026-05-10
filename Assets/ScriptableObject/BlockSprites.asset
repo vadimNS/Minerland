@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlockSprites
   m_EditorClassIdentifier: Assembly-CSharp::BlockSprites
   coalSprite: {fileID: 555232471, guid: 6b5e8466a5e441744849916e35fd0ea0, type: 3}
-  stoneSprite: {fileID: 1546190195, guid: 076a014f52857db40aed9eb342172ef3, type: 3}
+  stoneSprite: {fileID: -6747518546239284149, guid: 2f597e01e1ac57244835b708350e3d14, type: 3}
   dirtSprite: {fileID: 925310841, guid: 112791e2b73d2be409845141f0dc0f36, type: 3}
   ironSprite: {fileID: 376140721, guid: 6b5e8466a5e441744849916e35fd0ea0, type: 3}
   diamondSprite: {fileID: 1136970227, guid: 6b5e8466a5e441744849916e35fd0ea0, type: 3}
