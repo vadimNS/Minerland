@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78efd50c2861524ba6075e2dee1b6eb, type: 3}
   m_Name: MineSettings
   m_EditorClassIdentifier: 
-  width: 30
+  width: 37
   height: 100
-  coalChance: 0.06
-  "ironChan\u0441e": 0.05
+  coalChance: 0.05
+  "ironChan\u0441e": 0.03
   "DiamondChan\u0441e": 0.01
