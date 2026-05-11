@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MineSettings
   m_EditorClassIdentifier: 
   width: 30
-  height: 100
+  height: 300
   coalChance: 0.06
   "ironChan\u0441e": 0.05
   "DiamondChan\u0441e": 0.01
